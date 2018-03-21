@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SkaitliukoSkeneris.iml" filepath="$PROJECT_DIR$/SkaitliukoSkeneris.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Skaitliuko-Skeneris.iml" filepath="$PROJECT_DIR$/Skaitliuko-Skeneris.iml" />
+      <module fileurl="file://D:\vgtu\6semestras\procesas\Skaitliuko-Skeneris\SkaitliukoSkeneris.iml" filepath="D:\vgtu\6semestras\procesas\Skaitliuko-Skeneris\SkaitliukoSkeneris.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
