@@ -4,12 +4,18 @@
     >
 
     <item
+        android:id="@+id/action_help"
+        android:enabled="true"
+        android:icon="@drawable/ic_help"
+        android:title="Help"
+        android:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_add"
         android:enabled="true"
         android:icon="@drawable/ic_add"
         android:title="Add"
         android:showAsAction="ifRoom"/>
-
     <item
         android:id="@+id/action_search"
         android:enabled="true"
