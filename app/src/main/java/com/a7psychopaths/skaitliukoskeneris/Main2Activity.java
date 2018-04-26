@@ -21,19 +21,21 @@ public class Main2Activity extends AppCompatActivity {
         final int year = c.get(Calendar.YEAR);
         final int month = c.get(Calendar.MONTH)+1;
 
-        System.out.println();
+        final Parser p = new Parser();
 
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 //                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 //                startActivity(intent);
-                String value = gen()+"";
-                String date = year+"-"+month;
-                String type = "dujos";
-                backgroundWorker.execute(type, value, date);
-                Main2Activity.this.finish();
-            }
+
+                    String value = gen() + "";
+                    String date = year + "-" + month;
+                    String type = "dujos";
+                    backgroundWorker.execute(type, value, date);
+                    Main2Activity.this.finish();
+                }
+
         });
 
         final Button button2 = findViewById(R.id.button2);

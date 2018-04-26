@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context="com.a7psychopaths.skaitliukoskeneris.MainActivity">
 
+    <TextView
+        android:padding="5dp"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Informacija" />
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
