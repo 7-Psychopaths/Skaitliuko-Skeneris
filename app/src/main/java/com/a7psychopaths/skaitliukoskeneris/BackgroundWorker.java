@@ -28,10 +28,12 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String dujos_url = "http://milvada.lt/procesas/adddujos.php";
         String elektra_url = "http://milvada.lt/procesas/addelektra.php";
         String vanduo_url = "http://milvada.lt/procesas/addvanduo.php";
+        String user_url = "http://milvada.lt/procesas/adduser.php";
         if(type.equals("dujos")) {
             try {
                 String value = params[1];
                 String date = params[2];
+                String userId = params[3];
                 URL url = new URL(dujos_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -40,7 +42,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data = URLEncoder.encode("value","UTF-8")+"="+URLEncoder.encode(value,"UTF-8")+"&"
-                        +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8");
+                        +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8")+"&"
+                        +URLEncoder.encode("userId","UTF-8")+"="+URLEncoder.encode(userId,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -66,6 +69,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             try {
                 String value = params[1];
                 String date = params[2];
+                String userId = params[3];
                 URL url = new URL(elektra_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -74,7 +78,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data = URLEncoder.encode("value","UTF-8")+"="+URLEncoder.encode(value,"UTF-8")+"&"
-                        +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8");
+                        +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8")+"&"
+                        +URLEncoder.encode("userId","UTF-8")+"="+URLEncoder.encode(userId,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -100,6 +105,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
             try {
                 String value = params[1];
                 String date = params[2];
+                String userId = params[3];
                 URL url = new URL(vanduo_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -108,7 +114,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
                 String post_data = URLEncoder.encode("value","UTF-8")+"="+URLEncoder.encode(value,"UTF-8")+"&"
-                        +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8");
+                        +URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8")+"&"
+                        +URLEncoder.encode("userId","UTF-8")+"="+URLEncoder.encode(userId,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();

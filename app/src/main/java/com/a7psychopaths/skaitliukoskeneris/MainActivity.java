@@ -1,6 +1,9 @@
 package com.a7psychopaths.skaitliukoskeneris;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,18 +12,36 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.UUID;
+
 public class MainActivity extends AppCompatActivity {
 
-    String url="http://milvada.lt/procesas/getdujos.php";
+    static String url = "http://milvada.lt/procesas/getdujos.php";
+    public static boolean back = false;
 
+    private static String uniqueID = null;
+    private static final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
+
+    public static synchronized String id(Context context) {
+        if (uniqueID == null) {
+            SharedPreferences sharedPrefs = context.getSharedPreferences(
+                    PREF_UNIQUE_ID, Context.MODE_PRIVATE);
+            uniqueID = sharedPrefs.getString(PREF_UNIQUE_ID, null);
+            if (uniqueID == null) {
+                uniqueID = UUID.randomUUID().toString();
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putString(PREF_UNIQUE_ID, uniqueID);
+                editor.commit();
+            }
+        }
+        return uniqueID;
+    }
+
+    @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
 
         final ListView lv= (ListView) findViewById(R.id.lv);
         final Downloader d=new Downloader(this,url,lv);
@@ -43,4 +64,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

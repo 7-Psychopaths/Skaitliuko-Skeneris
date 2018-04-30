@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class Main2Activity extends AppCompatActivity {
 
+    String url="http://milvada.lt/procesas/getdujos.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,6 @@ public class Main2Activity extends AppCompatActivity {
         final int year = c.get(Calendar.YEAR);
         final int month = c.get(Calendar.MONTH)+1;
 
-        final Parser p = new Parser();
 
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -32,8 +33,10 @@ public class Main2Activity extends AppCompatActivity {
                     String value = gen() + "";
                     String date = year + "-" + month;
                     String type = "dujos";
-                    backgroundWorker.execute(type, value, date);
+                    backgroundWorker.execute(type, value, date, MainActivity.id(getApplicationContext()));
                     Main2Activity.this.finish();
+
+
                 }
 
         });
@@ -47,7 +50,7 @@ public class Main2Activity extends AppCompatActivity {
                 String value = gen()+"";
                 String date = year+"-"+month;
                 String type = "elektra";
-                backgroundWorker.execute(type, value, date);
+                backgroundWorker.execute(type, value, date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
             }
         });
@@ -61,7 +64,7 @@ public class Main2Activity extends AppCompatActivity {
                 String value = gen()+"";
                 String date = year+"-"+month;
                 String type = "vanduo";
-                backgroundWorker.execute(type, value, date);
+                backgroundWorker.execute(type, value, date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
             }
         });
