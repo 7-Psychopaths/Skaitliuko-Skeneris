@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Parser extends AsyncTask<Void,Integer,Integer> {
 
@@ -100,14 +101,27 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
                 //RETRIOEVE NAME
                 String Date=jo.getString("Date");
                 String Dujos=jo.getString("dujos");
-                String Vanduo=jo.getString("vanduo");
+                String Vanduo="Vanduo:"+jo.getString("vanduo");
                 String Elektra=jo.getString("elektra");
 
-                //ADD IT TO OUR ARRAYLIST
-                skaitliukai.add(Date);
-                skaitliukai.add(Dujos);
-                skaitliukai.add(Vanduo);
-                skaitliukai.add(Elektra);
+
+                if(Objects.equals(MainActivity.getType(), "dujos")){
+                    skaitliukai.add(Date);
+                    skaitliukai.add(Dujos);
+                }else if (Objects.equals(MainActivity.getType(), "elektra")){
+                    skaitliukai.add(Date);
+                    skaitliukai.add(Elektra);
+                }else if (Objects.equals(MainActivity.getType(), "vanduo")){
+                    skaitliukai.add(Date);
+                    skaitliukai.add(Vanduo);
+                }else{
+                    //ADD IT TO OUR ARRAYLIST
+                    skaitliukai.add(Date);
+                    skaitliukai.add(Dujos);
+                    skaitliukai.add(Vanduo);
+                    skaitliukai.add(Elektra);
+                    skaitliukai.add("");
+                }
             }
 
             return 1;

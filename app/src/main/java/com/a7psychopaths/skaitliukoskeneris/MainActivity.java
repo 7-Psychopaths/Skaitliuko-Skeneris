@@ -10,13 +10,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
-    static String url = "http://milvada.lt/procesas/getdujos.php";
+    String url = "http://milvada.lt/procesas/getdujos.php";
     public static boolean back = false;
 
     private static String uniqueID = null;
@@ -43,9 +42,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         final ListView lv= (ListView) findViewById(R.id.lv);
         final Downloader d=new Downloader(this,url,lv);
         d.execute();
+
+        final Context context =  getApplicationContext();
 
         BottomNavigationView bottomNavigationView =  (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -53,16 +55,20 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                        Intent intent = new Intent(context, Main2Activity.class);
                         startActivity(intent);
+                        MainActivity.this.finish();
                         break;
                     case R.id.action_search:
-                        Toast.makeText(MainActivity.this, "Action Search Clicked", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return true;
             }
         });
+    }
+
+    public static String getType(){
+        return "";
     }
 
 }

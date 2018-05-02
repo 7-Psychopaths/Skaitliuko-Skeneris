@@ -1,5 +1,7 @@
 package com.a7psychopaths.skaitliukoskeneris;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +25,9 @@ public class Main2Activity extends AppCompatActivity {
         final int year = c.get(Calendar.YEAR);
         final int month = c.get(Calendar.MONTH)+1;
 
+        final Context context =  getApplicationContext();
+        final Intent intent = new Intent(context, MainActivity.class);
+
 
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +40,7 @@ public class Main2Activity extends AppCompatActivity {
                     String type = "dujos";
                     backgroundWorker.execute(type, value, date, MainActivity.id(getApplicationContext()));
                     Main2Activity.this.finish();
+                    startActivity(intent);
 
 
                 }
@@ -52,6 +58,7 @@ public class Main2Activity extends AppCompatActivity {
                 String type = "elektra";
                 backgroundWorker.execute(type, value, date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
+                startActivity(intent);
             }
         });
 
@@ -66,6 +73,8 @@ public class Main2Activity extends AppCompatActivity {
                 String type = "vanduo";
                 backgroundWorker.execute(type, value, date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
+                startActivity(intent);
+
             }
         });
 
