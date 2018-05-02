@@ -1,17 +1,26 @@
 package com.a7psychopaths.skaitliukoskeneris;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -37,6 +46,7 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
+
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -47,11 +57,17 @@ public class Main2Activity extends AppCompatActivity {
                     String date = year + "-" + month;
                     String type = "dujos";
 
+                    // Issaugom xml failus i sd card
+                    copyAsset("classifications.xml");
+                    copyAsset("images.xml");
+                    copyAsset("testt.png");
+                    String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
+
                     Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-                    backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
+                    // backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
                     Main2Activity.this.finish();
 
-                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())));
+                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
                 mRgba.release();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -70,11 +86,13 @@ public class Main2Activity extends AppCompatActivity {
                 String value = gen()+"";
                 String date = year+"-"+month;
                 String type = "elektra";
+
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
                 Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-                backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
+                //backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
 
-                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())));
+                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
                 mRgba.release();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -91,11 +109,12 @@ public class Main2Activity extends AppCompatActivity {
                 String value = gen()+"";
                 String date = year+"-"+month;
                 String type = "vanduo";
+                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
                 Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-                backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
+                //backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
 
-                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())));
+                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
                 mRgba.release();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -111,4 +130,49 @@ public class Main2Activity extends AppCompatActivity {
         Random r = new Random( System.currentTimeMillis() );
         return ((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
     }
+
+    private  void copyAsset(String filename){
+        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
+        File dir = new File(dirPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+        AssetManager assetManager = getAssets();
+        InputStream in = null;
+        OutputStream out = null;
+        try{
+            in = assetManager.open(filename);
+            File outFile = new File(dirPath, filename);
+            out = new FileOutputStream(outFile);
+            copyFile(in, out);
+            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+        } catch (IOException e){
+            e.printStackTrace();
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        } finally {
+            if(in != null){
+                try{
+                    in.close();
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+            if(out != null){
+                try{
+                    out.close();
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void copyFile(InputStream in, OutputStream out) throws IOException{
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
+        }
+    }
+
 }

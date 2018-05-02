@@ -28,7 +28,7 @@ extern "C" {
 class ContourWithData;
 
 JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_getDigits
-    (JNIEnv *, jclass, jlong);
+    (JNIEnv *, jclass, jlong, jstring path);
 
 #ifdef __cplusplus
 }

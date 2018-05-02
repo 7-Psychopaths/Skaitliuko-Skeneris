@@ -5,5 +5,5 @@ package com.a7psychopaths.skaitliukoskeneris;
  */
 
 public class Recognition {
-    public native static int getDigits(long matAddrRgba);
+    public native static int getDigits(long matAddrRgba, String path);
 }
