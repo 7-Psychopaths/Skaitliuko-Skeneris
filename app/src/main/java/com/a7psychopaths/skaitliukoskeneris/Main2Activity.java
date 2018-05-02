@@ -44,7 +44,11 @@ public class Main2Activity extends AppCompatActivity {
         final int year = c.get(Calendar.YEAR);
         final int month = c.get(Calendar.MONTH)+1;
 
-
+        ////////////////////////////////////////
+        // i SD card issaugo siuos failus
+        copyAsset("classifications.xml");
+        copyAsset("images.xml");
+        ////////////////////////////////////////
 
 
         final Button button = findViewById(R.id.button);
@@ -57,13 +61,13 @@ public class Main2Activity extends AppCompatActivity {
                     String date = year + "-" + month;
                     String type = "dujos";
 
-                    // Issaugom xml failus i sd card
-                    copyAsset("classifications.xml");
-                    copyAsset("images.xml");
+                ////////////////////////////////////////
                     copyAsset("testt.png");
+                // Sie kintamieji naudojami C++
                     String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
-
                     Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
+                ////////////////////////////////////////
+
                     // backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
                     Main2Activity.this.finish();
 
@@ -87,8 +91,13 @@ public class Main2Activity extends AppCompatActivity {
                 String date = year+"-"+month;
                 String type = "elektra";
 
+                ////////////////////////////////////////
+                copyAsset("testt.png");
+                // Sie kintamieji naudojami C++
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
                 Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
+                ////////////////////////////////////////
+
                 //backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
 
@@ -109,8 +118,14 @@ public class Main2Activity extends AppCompatActivity {
                 String value = gen()+"";
                 String date = year+"-"+month;
                 String type = "vanduo";
+
+                ////////////////////////////////////////
+                copyAsset("testt.png");
+                // Sie kintamieji naudojami C++
                 String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
                 Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
+                ////////////////////////////////////////
+
                 //backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
                 Main2Activity.this.finish();
 
@@ -130,6 +145,9 @@ public class Main2Activity extends AppCompatActivity {
         Random r = new Random( System.currentTimeMillis() );
         return ((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
     }
+
+    ////////////////////////////////////////////////////
+    // tiek copyAsset, tiek copyFile metodai naudojami tam, kad issaugotu i SD card
 
     private  void copyAsset(String filename){
         String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
@@ -174,5 +192,6 @@ public class Main2Activity extends AppCompatActivity {
             out.write(buffer, 0, read);
         }
     }
+    //////////////////////////////////////////////////////////
 
 }

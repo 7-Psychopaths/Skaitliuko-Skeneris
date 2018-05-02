@@ -21,23 +21,13 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     (JNIEnv *env, jclass, jlong addrRgba, jstring path){
 
     Mat& mRgb = *(Mat*)addrRgba;
-
-    int conv = 70;
     jint retVal;
 
-    //const char *pathhh = (*env)->GetStringUTFChars(env, path, 0);
-
-    retVal = (jint) conv;
 
     vector<ContourWithData> allContoursWithData;
 	vector<ContourWithData> validContoursWithData;
 
-
 	Mat matClassificationInts;
-
-	//FileStorage fsClassifications("app//src//main//assets//classifications.xml", FileStorage::READ);
-    //FILE* fileImages = fopen( "/storage/emulated/0/SkaitliukoSkeneris/images.xml" , "rb" );
-    //FILE* fileClass = fopen( "/storage/emulated/0/SkaitliukoSkeneris/classifications.xml" , "rb" );
 
     FileStorage fsClassifications("/storage/emulated/0/SkaitliukoSkeneris/classifications.xml", FileStorage::READ);
     fsClassifications["classifications"] >> matClassificationInts;
@@ -55,12 +45,6 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     kNearest.train(matTrainingImagesAsFlattenedFloats, matClassificationInts);
 
     Mat matTestingNumbers = imread("/storage/emulated/0/SkaitliukoSkeneris/testt.png");
-
-    //if (matTestingNumbers.empty()) {                                // if unable to open image - return
-    //		conv = 5000;
-    //		retVal = (jint) conv;
-    //		return retVal;
-    //	}
 
     Mat matGrayscale;
     Mat matBlurred;
