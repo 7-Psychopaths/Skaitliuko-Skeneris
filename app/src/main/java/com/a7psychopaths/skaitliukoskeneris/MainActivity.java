@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_search:
-                        Toast.makeText(MainActivity.this, "Action Search Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(getApplicationContext(), Main3Activity.class);
+                        startActivity(intent2);
                         break;
                 }
                 return true;
