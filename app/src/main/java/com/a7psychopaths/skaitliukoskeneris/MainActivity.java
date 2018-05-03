@@ -10,7 +10,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.UUID;
 
@@ -55,10 +54,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_add:
                         Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
                         startActivity(intent);
+                        MainActivity.this.finish();
                         break;
                     case R.id.action_search:
                         Intent intent2 = new Intent(getApplicationContext(), Main3Activity.class);
                         startActivity(intent2);
+                        MainActivity.this.finish();
                         break;
                 }
                 return true;

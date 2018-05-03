@@ -23,12 +23,12 @@
             android:padding="10dp"
             android:text="Pagal Tipa" />
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="258dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Pagal Data" />
+        <!--<Button-->
+            <!--android:id="@+id/button5"-->
+            <!--android:layout_width="258dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="10dp"-->
+            <!--android:text="Pagal Data" />-->
         <Button
             android:id="@+id/button6"
             android:layout_width="258dp"
@@ -49,29 +49,29 @@
             android:padding="10dp"
             android:text="Elektra" />
 
-        <EditText
-        android:id="@+id/metai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Iveskite Metus"
-        android:imeOptions="actionNext"
-        android:inputType="number" />
+        <!--<EditText-->
+        <!--android:id="@+id/metai"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="Iveskite Metus"-->
+        <!--android:imeOptions="actionNext"-->
+        <!--android:inputType="number" />-->
 
 
-        <EditText
-            android:id="@+id/menuo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Iveskite Menesi"
-            android:imeOptions="actionDone"
-            android:inputType="number"/>
+        <!--<EditText-->
+            <!--android:id="@+id/menuo"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Iveskite Menesi"-->
+            <!--android:imeOptions="actionDone"-->
+            <!--android:inputType="number"/>-->
 
         <Button
             android:id="@+id/button9"
             android:layout_width="258dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Gerai" />
+            android:text="Visi" />
 
 
     </LinearLayout>
