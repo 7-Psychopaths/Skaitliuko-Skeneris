@@ -44,7 +44,7 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     KNearest kNearest = KNearest();					// instantiate the KNN object
     kNearest.train(matTrainingImagesAsFlattenedFloats, matClassificationInts);
 
-    Mat matTestingNumbers = imread("/storage/emulated/0/SkaitliukoSkeneris/testt.png");
+    Mat matTestingNumbers = imread("/storage/emulated/0/SkaitliukoSkeneris/dujos.png");
 
     Mat matGrayscale;
     Mat matBlurred;

@@ -71,7 +71,13 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.finish();
                         break;
                     case R.id.action_search:
-                        Toast.makeText(MainActivity.this, "Action Search Clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(getApplicationContext(), Main3Activity.class);
+                        startActivity(intent2);
+                        MainActivity.this.finish();
+                        break;
+                    case R.id.action_help:
+                        Intent intent3 = new Intent(getApplicationContext(), Main5Activity.class);
+                        startActivity(intent3);
                         break;
                 }
                 return true;

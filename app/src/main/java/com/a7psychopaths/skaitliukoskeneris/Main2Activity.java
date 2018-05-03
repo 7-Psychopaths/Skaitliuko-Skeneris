@@ -1,8 +1,10 @@
 package com.a7psychopaths.skaitliukoskeneris;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
@@ -38,17 +40,11 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        final BackgroundWorker backgroundWorker = new BackgroundWorker(this);
 
-        final Calendar c = Calendar.getInstance();
-        final int year = c.get(Calendar.YEAR);
-        final int month = c.get(Calendar.MONTH)+1;
 
-        ////////////////////////////////////////
-        // i SD card issaugo siuos failus
-        copyAsset("classifications.xml");
-        copyAsset("images.xml");
-        ////////////////////////////////////////
+        final Context context =  getApplicationContext();
+        final Intent intent = new Intent(context, MainActivity.class);
+        final Intent intent2 = new Intent(context, Main6Activity.class);
 
 
         final Button button = findViewById(R.id.button);
@@ -56,25 +52,30 @@ public class Main2Activity extends AppCompatActivity {
             public void onClick(View v) {
 //                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 //                startActivity(intent);
-
-                    String value = gen() + "";
-                    String date = year + "-" + month;
-                    String type = "dujos";
-
-                ////////////////////////////////////////
-                    copyAsset("testt.png");
-                // Sie kintamieji naudojami C++
-                    String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
-                    Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-                ////////////////////////////////////////
-
-                    // backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
-                    Main2Activity.this.finish();
-
-                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
-                mRgba.release();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                startActivity(intent2);
+                Main6Activity.type="dujos";
+                Main2Activity.this.finish();
+//
+//                ////////////////////////////////////////
+//                // i SD card issaugo siuos failus
+//                copyAsset("classifications.xml");
+//                copyAsset("images.xml");
+//                ////////////////////////////////////////
+//
+//                ////////////////////////////////////////
+//
+//                // Sie kintamieji naudojami C++
+//                    String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
+//                    Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
+//                ////////////////////////////////////////
+//
+//                    backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
+//                    Main2Activity.this.finish();
+//
+//                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
+//                mRgba.release();
+//
+//                startActivity(intent);
 
 
                 }
@@ -87,25 +88,35 @@ public class Main2Activity extends AppCompatActivity {
 //                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 //                startActivity(intent);
 
-                String value = gen()+"";
-                String date = year+"-"+month;
-                String type = "elektra";
+//                String value = gen()+"";
+//                String date = year+"-"+month;
+//                String type = "elektra";
+//
+//                ////////////////////////////////////////
+//                // i SD card issaugo siuos failus
+//                copyAsset("classifications.xml");
+//                copyAsset("images.xml");
+//                ////////////////////////////////////////
+//
+//                ////////////////////////////////////////
+//
+//                // Sie kintamieji naudojami C++
+//                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
+//                Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
+//                ////////////////////////////////////////
+//
+//                backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
+//                Main2Activity.this.finish();
+//
+//                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
+//                mRgba.release();
+//
+//
+//                startActivity(intent);
 
-                ////////////////////////////////////////
-                copyAsset("testt.png");
-                // Sie kintamieji naudojami C++
-                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
-                Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-                ////////////////////////////////////////
-
-                //backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
+                startActivity(intent2);
+                Main6Activity.type="elektra";
                 Main2Activity.this.finish();
-
-                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
-                mRgba.release();
-
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -115,25 +126,33 @@ public class Main2Activity extends AppCompatActivity {
 //                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
 //                startActivity(intent);
 
-                String value = gen()+"";
-                String date = year+"-"+month;
-                String type = "vanduo";
-
-                ////////////////////////////////////////
-                copyAsset("testt.png");
-                // Sie kintamieji naudojami C++
-                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
-                Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-                ////////////////////////////////////////
-
-                //backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr())), date, MainActivity.id(getApplicationContext()));
+//                String value = gen()+"";
+//                String date = year+"-"+month;
+//                String type = "vanduo";
+//
+//                ////////////////////////////////////////
+//                // i SD card issaugo siuos failus
+//                copyAsset("classifications.xml");
+//                copyAsset("images.xml");
+//                ////////////////////////////////////////
+//
+//                ////////////////////////////////////////
+//
+//                // Sie kintamieji naudojami C++
+//                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
+//                Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
+//                ////////////////////////////////////////
+//
+//                backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
+//                Main2Activity.this.finish();
+//
+//                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
+//                mRgba.release();
+//
+//                startActivity(intent);
+                startActivity(intent2);
+                Main6Activity.type="vanduo";
                 Main2Activity.this.finish();
-
-                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
-                mRgba.release();
-
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
             }
         });
 

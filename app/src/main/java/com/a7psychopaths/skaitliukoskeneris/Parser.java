@@ -22,10 +22,10 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
     ListView lv;
     String data;
 
-    ArrayList<String> skaitliukai=new ArrayList<>();
+    private ArrayList<String> skaitliukai=new ArrayList<>();
     ProgressDialog pd;
 
-    public Parser(Context c, String data, ListView lv) {
+    Parser(Context c, String data, ListView lv) {
         this.c = c;
         this.data = data;
         this.lv = lv;
@@ -92,6 +92,8 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
 
             skaitliukai.clear();
 
+//            Main4Activity main4Activity = new Main4Activity();
+
             //LOOP THRU ARRAY
             for(int i=0;i<ja.length();i++)
             {
@@ -99,15 +101,34 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
 
                 //RETRIOEVE NAME
                 String Date=jo.getString("Date");
-                String Dujos=jo.getString("dujos");
-                String Vanduo=jo.getString("vanduo");
-                String Elektra=jo.getString("elektra");
+                String Dujos="Dujos: "+jo.getString("Dujos");
+                String Vanduo="Vanduo: "+jo.getString("Vanduo");
+                String Elektra="Elektra: "+jo.getString("Elektra");
 
-                //ADD IT TO OUR ARRAYLIST
-                skaitliukai.add(Date);
-                skaitliukai.add(Dujos);
-                skaitliukai.add(Vanduo);
-                skaitliukai.add(Elektra);
+
+
+                switch (Filter.getDataType()) {
+                    case "Dujos":
+                        skaitliukai.add(Date);
+                        skaitliukai.add(Dujos);
+                        break;
+                    case "Elektra":
+                        skaitliukai.add(Date);
+                        skaitliukai.add(Elektra);
+                        break;
+                    case "Vanduo":
+                        skaitliukai.add(Date);
+                        skaitliukai.add(Vanduo);
+                        break;
+                    default:
+                        //ADD IT TO OUR ARRAYLIST
+                        skaitliukai.add(Date);
+                        skaitliukai.add(Dujos);
+                        skaitliukai.add(Vanduo);
+                        skaitliukai.add(Elektra);
+                        skaitliukai.add("");
+                        break;
+                }
             }
 
             return 1;
@@ -118,4 +139,4 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
 
         return 0;
     }
-}
+    }

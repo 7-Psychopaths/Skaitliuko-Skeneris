@@ -29,6 +29,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String elektra_url = "http://milvada.lt/procesas/addelektra.php";
         String vanduo_url = "http://milvada.lt/procesas/addvanduo.php";
         String user_url = "http://milvada.lt/procesas/adduser.php";
+
         if(type.equals("dujos")) {
             try {
                 String value = params[1];
