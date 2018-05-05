@@ -58,7 +58,7 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
 
     	Mat structuringElement = getStructuringElement(CV_SHAPE_RECT, Size(3, 3));
 
-    	cvtColor(matTestingNumbers, matGrayscale, CV_BGR2GRAY);         // convert to grayscale
+    	cvtColor(mRgb, matGrayscale, CV_BGR2GRAY);         // convert to grayscale
 
 
         	morphologyEx(matGrayscale, imgTopHat, CV_MOP_TOPHAT, structuringElement);
@@ -113,7 +113,7 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     	for (int i = 0; i < validContoursWithData.size(); i++) {            // for each contour
 
         																		// draw a green rect around the current char
-        		rectangle(matTestingNumbers,                            // draw rectangle on original image
+        		rectangle(mRgb,                            // draw rectangle on original image
         			validContoursWithData[i].boundingRect,        // rect to draw
         			Scalar(0, 255, 0),                        // green
         			2);                                           // thickness

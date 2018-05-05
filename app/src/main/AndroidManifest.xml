@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -33,7 +33,8 @@
         </activity>
         <activity android:name=".Main3Activity" />
         <activity android:name=".Main5Activity" />
-        <activity android:name=".Main6Activity"></activity>
+        <activity android:name=".Main6Activity" />
+        <activity android:name=".Main7Activity"></activity>
     </application>
 
 </manifest>

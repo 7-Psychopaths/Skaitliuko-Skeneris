@@ -1,5 +1,6 @@
 package org.opencv.android;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import android.content.Context;
@@ -195,6 +196,7 @@ public class JavaCameraView extends CameraBridgeViewBase implements PreviewCallb
 
                     /* Finally we are ready to start the preview */
                     Log.d(TAG, "startPreview");
+
                     mCamera.startPreview();
                 }
                 else
@@ -207,6 +209,7 @@ public class JavaCameraView extends CameraBridgeViewBase implements PreviewCallb
 
         return result;
     }
+
 
     protected void releaseCamera() {
         synchronized (this) {

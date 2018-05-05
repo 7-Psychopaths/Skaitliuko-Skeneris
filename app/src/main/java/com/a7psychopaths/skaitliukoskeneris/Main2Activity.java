@@ -44,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
 
         final Context context =  getApplicationContext();
         final Intent intent = new Intent(context, MainActivity.class);
-        final Intent intent2 = new Intent(context, Main6Activity.class);
+        final Intent intent2 = new Intent(context, Main7Activity.class);
 
 
         final Button button = findViewById(R.id.button);
