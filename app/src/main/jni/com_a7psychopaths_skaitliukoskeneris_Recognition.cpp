@@ -95,9 +95,11 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     for (int i = 0; i < ptContours.size(); i++) {               // for each contour
         		ContourWithData contourWithData;                                                    // instantiate a contour with data object
         		contourWithData.ptContour = ptContours[i];                                          // assign contour to contour with data
+        		//if(contourWithData.ptContour.x >300){
         		contourWithData.boundingRect = boundingRect(contourWithData.ptContour);         // get the bounding rect
         		contourWithData.fltArea = contourArea(contourWithData.ptContour);               // calculate the contour area
         		allContoursWithData.push_back(contourWithData);                                     // add contour with data object to list of all contours with data
+                //}
         	}
 
     for (int i = 0; i < allContoursWithData.size(); i++) {                      // for all contours
