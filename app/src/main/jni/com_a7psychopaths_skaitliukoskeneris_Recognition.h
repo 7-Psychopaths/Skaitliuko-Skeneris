@@ -12,8 +12,8 @@
 using namespace std;
 using namespace cv;
 
-const int MIN_CONTOUR_AREA = 200;
-const int MAX_CONTOUR_AREA = 5000;
+const int MIN_CONTOUR_AREA = 250;
+const int MAX_CONTOUR_AREA = 800;
 
 const int RESIZED_IMAGE_WIDTH = 20;
 const int RESIZED_IMAGE_HEIGHT = 30;

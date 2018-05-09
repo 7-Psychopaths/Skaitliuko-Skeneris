@@ -7,7 +7,8 @@ class ContourWithData {
     	float fltArea;
 
     	bool checkIfContourIsValid() {
-    		if (fltArea < MIN_CONTOUR_AREA || fltArea > MAX_CONTOUR_AREA) return false;
+    		if (fltArea < MIN_CONTOUR_AREA || fltArea > MAX_CONTOUR_AREA || boundingRect.width > 60 || boundingRect.width < 14
+    		 || boundingRect.height > 85 || boundingRect.height < 40) return false;
     		return true;
     	}
 
@@ -23,20 +24,25 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     Mat& mRgb = *(Mat*)addrRgba;
     jint retVal;
 
+    const char *cstr = env->GetStringUTFChars(path, NULL);
+    string pathToSD = string(cstr);
+    //env->ReleaseStringUTFChars(path, str);
+
+
 
     vector<ContourWithData> allContoursWithData;
 	vector<ContourWithData> validContoursWithData;
 
 	Mat matClassificationInts;
 
-    FileStorage fsClassifications("/storage/emulated/0/SkaitliukoSkeneris/classifications.xml", FileStorage::READ);
+    FileStorage fsClassifications(pathToSD+"/classifications.xml", FileStorage::READ);
     fsClassifications["classifications"] >> matClassificationInts;
 
 	fsClassifications.release();
 
     Mat matTrainingImagesAsFlattenedFloats;
 
-    FileStorage fsTrainingImages("/storage/emulated/0/SkaitliukoSkeneris/images.xml", FileStorage::READ);
+    FileStorage fsTrainingImages(pathToSD+"/images.xml", FileStorage::READ);
 
     fsTrainingImages["images"] >> matTrainingImagesAsFlattenedFloats;
     fsTrainingImages.release();
@@ -44,7 +50,7 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     KNearest kNearest = KNearest();					// instantiate the KNN object
     kNearest.train(matTrainingImagesAsFlattenedFloats, matClassificationInts);
 
-    Mat matTestingNumbers = imread("/storage/emulated/0/SkaitliukoSkeneris/dujos.png");
+    //Mat matTestingNumbers = imread("/storage/emulated/0/SkaitliukoSkeneris/dujos.png");
 
     Mat matGrayscale;
     Mat matBlurred;
@@ -145,6 +151,5 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
 
     return retVal;
     }
-
 
 

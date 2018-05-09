@@ -40,44 +40,18 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
-
         final Context context =  getApplicationContext();
-        final Intent intent = new Intent(context, MainActivity.class);
         final Intent intent2 = new Intent(context, Main7Activity.class);
 
 
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-//                startActivity(intent);
                 startActivity(intent2);
                 Main6Activity.type="dujos";
                 Main2Activity.this.finish();
-//
-//                ////////////////////////////////////////
-//                // i SD card issaugo siuos failus
-//                copyAsset("classifications.xml");
-//                copyAsset("images.xml");
-//                ////////////////////////////////////////
-//
-//                ////////////////////////////////////////
-//
-//                // Sie kintamieji naudojami C++
-//                    String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
-//                    Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-//                ////////////////////////////////////////
-//
-//                    backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
-//                    Main2Activity.this.finish();
-//
-//                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
-//                mRgba.release();
-//
-//                startActivity(intent);
-
-
+                copyAsset("classifications.xml");
+                copyAsset("images.xml");
                 }
 
         });
@@ -85,34 +59,11 @@ public class Main2Activity extends AppCompatActivity {
         final Button button2 = findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-//                startActivity(intent);
-
-//                String value = gen()+"";
-//                String date = year+"-"+month;
-//                String type = "elektra";
-//
-//                ////////////////////////////////////////
-//                // i SD card issaugo siuos failus
-//                copyAsset("classifications.xml");
-//                copyAsset("images.xml");
-//                ////////////////////////////////////////
-//
-//                ////////////////////////////////////////
-//
-//                // Sie kintamieji naudojami C++
-//                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
-//                Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-//                ////////////////////////////////////////
-//
-//                backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
-//                Main2Activity.this.finish();
-//
-//                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
-//                mRgba.release();
-//
-//
-//                startActivity(intent);
+                ////////////////////////////////////////
+                // i SD card issaugo siuos failus
+                copyAsset("classifications.xml");
+                copyAsset("images.xml");
+                ////////////////////////////////////////
 
                 startActivity(intent2);
                 Main6Activity.type="elektra";
@@ -123,33 +74,12 @@ public class Main2Activity extends AppCompatActivity {
         final Button button3 = findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-//                startActivity(intent);
+                ////////////////////////////////////////
+                // i SD card issaugo siuos failus
+                copyAsset("classifications.xml");
+                copyAsset("images.xml");
+                ////////////////////////////////////////
 
-//                String value = gen()+"";
-//                String date = year+"-"+month;
-//                String type = "vanduo";
-//
-//                ////////////////////////////////////////
-//                // i SD card issaugo siuos failus
-//                copyAsset("classifications.xml");
-//                copyAsset("images.xml");
-//                ////////////////////////////////////////
-//
-//                ////////////////////////////////////////
-//
-//                // Sie kintamieji naudojami C++
-//                String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
-//                Mat mRgba = new Mat(100, 100, CvType.CV_8UC4);
-//                ////////////////////////////////////////
-//
-//                backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
-//                Main2Activity.this.finish();
-//
-//                Log.d(TAG, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)));
-//                mRgba.release();
-//
-//                startActivity(intent);
                 startActivity(intent2);
                 Main6Activity.type="vanduo";
                 Main2Activity.this.finish();
@@ -158,11 +88,6 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-    }
-
-    public int gen() {
-        Random r = new Random( System.currentTimeMillis() );
-        return ((1 + r.nextInt(2)) * 10000 + r.nextInt(10000));
     }
 
     ////////////////////////////////////////////////////
@@ -182,10 +107,8 @@ public class Main2Activity extends AppCompatActivity {
             File outFile = new File(dirPath, filename);
             out = new FileOutputStream(outFile);
             copyFile(in, out);
-            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
         } catch (IOException e){
             e.printStackTrace();
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(in != null){
                 try{
