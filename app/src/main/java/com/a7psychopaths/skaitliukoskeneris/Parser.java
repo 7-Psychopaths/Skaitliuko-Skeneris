@@ -22,7 +22,8 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
     ListView lv;
     String data;
 
-    private ArrayList<String> skaitliukai=new ArrayList<>();
+    static ArrayList<String> skaitliukai=new ArrayList<>();
+    static ArrayList<String> AllSkaitliukai=new ArrayList<>();
     ProgressDialog pd;
 
     Parser(Context c, String data, ListView lv) {
@@ -91,45 +92,50 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
             JSONObject jo=null;
 
             skaitliukai.clear();
+            AllSkaitliukai.clear();
 
 //            Main4Activity main4Activity = new Main4Activity();
 
             //LOOP THRU ARRAY
-            for(int i=0;i<ja.length();i++)
-            {
-                jo=ja.getJSONObject(i);
+            for(int i=0;i<ja.length();i++) {
+                jo = ja.getJSONObject(i);
 
                 //RETRIOEVE NAME
-                String Date=jo.getString("Date");
-                String Dujos="Dujos: "+jo.getString("Dujos");
-                String Vanduo="Vanduo: "+jo.getString("Vanduo");
-                String Elektra="Elektra: "+jo.getString("Elektra");
+                String Date = jo.getString("Date");
+                String Dujos = "Dujos: " + jo.getString("Dujos");
+                String Vanduo = "Vanduo: " + jo.getString("Vanduo");
+                String Elektra = "Elektra: " + jo.getString("Elektra");
 
 
+                    switch (Filter.getDataType()) {
+                        case "Dujos":
+                            skaitliukai.add(Date);
+                            skaitliukai.add(Dujos);
+                            break;
+                        case "Elektra":
+                            skaitliukai.add(Date);
+                            skaitliukai.add(Elektra);
+                            break;
+                        case "Vanduo":
+                            skaitliukai.add(Date);
+                            skaitliukai.add(Vanduo);
+                            break;
+                        default:
+                            //ADD IT TO OUR ARRAYLIST
+                            skaitliukai.add(Date);
+                            skaitliukai.add(Dujos);
+                            skaitliukai.add(Vanduo);
+                            skaitliukai.add(Elektra);
+                            skaitliukai.add("");
+                            break;
+                    }
 
-                switch (Filter.getDataType()) {
-                    case "Dujos":
-                        skaitliukai.add(Date);
-                        skaitliukai.add(Dujos);
-                        break;
-                    case "Elektra":
-                        skaitliukai.add(Date);
-                        skaitliukai.add(Elektra);
-                        break;
-                    case "Vanduo":
-                        skaitliukai.add(Date);
-                        skaitliukai.add(Vanduo);
-                        break;
-                    default:
-                        //ADD IT TO OUR ARRAYLIST
-                        skaitliukai.add(Date);
-                        skaitliukai.add(Dujos);
-                        skaitliukai.add(Vanduo);
-                        skaitliukai.add(Elektra);
-                        skaitliukai.add("");
-                        break;
+                    AllSkaitliukai.add(Date);
+                    AllSkaitliukai.add(Dujos);
+                    AllSkaitliukai.add(Vanduo);
+                    AllSkaitliukai.add(Elektra);
+                    AllSkaitliukai.add("");
                 }
-            }
 
             return 1;
 
@@ -139,4 +145,5 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
 
         return 0;
     }
+
 }

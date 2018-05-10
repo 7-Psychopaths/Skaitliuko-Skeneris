@@ -24,17 +24,17 @@
             android:text="Dujos" />
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="258dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Elektra" />
-
-        <Button
             android:id="@+id/button3"
             android:layout_width="257dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Vanduo" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="258dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Elektra" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

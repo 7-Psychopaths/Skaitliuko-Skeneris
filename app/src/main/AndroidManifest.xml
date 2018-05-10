@@ -21,14 +21,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity">
-            android:parentActivityName=".MainActivity">
+            <!--android:parentActivityName=".MainActivity">-->
             <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value=".MainActivity" />-->
         </activity>
         <activity android:name=".Main3Activity" />
-        <activity android:name=".Main4Activity"></activity>
+        <activity android:name=".Main4Activity" />
     </application>
 
 </manifest>

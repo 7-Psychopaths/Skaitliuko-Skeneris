@@ -1,8 +1,10 @@
 package com.a7psychopaths.skaitliukoskeneris;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -128,6 +130,15 @@ public class Main3Activity extends AppCompatActivity {
     public void openAactivity4() {
         Intent intent3 = new Intent(this, MainActivity.class);
         startActivity(intent3);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        final Context context =  getApplicationContext();
+        final Intent intent = new Intent(context, MainActivity.class);
+        Main3Activity.this.finish();
+        startActivity(intent);
     }
 
 

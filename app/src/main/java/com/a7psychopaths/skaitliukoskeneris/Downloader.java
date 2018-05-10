@@ -50,7 +50,7 @@ public class Downloader extends AsyncTask<Void,Integer,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        pd.dismiss();;
+        pd.dismiss();
 
         if(s != null)
         {
