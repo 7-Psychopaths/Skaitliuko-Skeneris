@@ -25,13 +25,17 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Point;
 
+import java.util.Calendar;
+
 public class Main7Activity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2{
     private static final String TAG="Main7Activity";
     JavaCameraView javaCameraView;
     String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
+    final BackgroundWorker backgroundWorker = new BackgroundWorker(this);
     int sl;
     String digit = "Digit";
     TextView number;
+    static String type ="";
 
     Handler handler = new Handler() {
         @Override
@@ -79,6 +83,11 @@ public class Main7Activity extends AppCompatActivity implements CameraBridgeView
         final Button button = findViewById(R.id.button10);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Calendar c = Calendar.getInstance();
+                final int year = c.get(Calendar.YEAR);
+                final int month = c.get(Calendar.MONTH)+1;
+                String date = year + "-" + month;
+                backgroundWorker.execute(type, digit, date, MainActivity.id(getApplicationContext()));
                 startActivity(intent);
                 Main7Activity.this.finish();
             }

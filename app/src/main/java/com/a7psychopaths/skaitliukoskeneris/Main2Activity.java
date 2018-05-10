@@ -47,11 +47,12 @@ public class Main2Activity extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(intent2);
-                Main6Activity.type="dujos";
-                Main2Activity.this.finish();
                 copyAsset("classifications.xml");
                 copyAsset("images.xml");
+                startActivity(intent2);
+                Main7Activity.type="dujos";
+                Main2Activity.this.finish();
+
                 }
 
         });
@@ -66,7 +67,7 @@ public class Main2Activity extends AppCompatActivity {
                 ////////////////////////////////////////
 
                 startActivity(intent2);
-                Main6Activity.type="elektra";
+                Main7Activity.type="elektra";
                 Main2Activity.this.finish();
             }
         });
@@ -81,7 +82,7 @@ public class Main2Activity extends AppCompatActivity {
                 ////////////////////////////////////////
 
                 startActivity(intent2);
-                Main6Activity.type="vanduo";
+                Main7Activity.type="vanduo";
                 Main2Activity.this.finish();
             }
         });

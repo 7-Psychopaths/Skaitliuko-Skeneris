@@ -49,7 +49,7 @@ public class Main6Activity extends AppCompatActivity {
     DisplayMetrics displayMetrics ;
     int width, height;
     private static final String TAG="Main6Activity";
-    static String type ="";
+    //static String type ="";
 
     final BackgroundWorker backgroundWorker = new BackgroundWorker(this);
 
@@ -192,7 +192,7 @@ public class Main6Activity extends AppCompatActivity {
 
                 final Context context =  getApplicationContext();
                 final Intent intent = new Intent(context, MainActivity.class);
-                backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
+                //backgroundWorker.execute(type, String.valueOf(Recognition.getDigits( mRgba.getNativeObjAddr(), path)), date, MainActivity.id(getApplicationContext()));
                 Main6Activity.this.finish();
                 startActivity(intent);
                 ////////////////////////////////////////
@@ -201,9 +201,6 @@ public class Main6Activity extends AppCompatActivity {
                 copyAsset("images.xml");
                 ////////////////////////////////////////
 
-                ////////////////////////////////////////
-                // Sie kintamieji naudojami C++
-                ////////////////////////////////////////
 
                 mRgba.release();
 
