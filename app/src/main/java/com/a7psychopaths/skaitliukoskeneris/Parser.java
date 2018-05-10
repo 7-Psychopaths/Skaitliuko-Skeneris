@@ -23,6 +23,7 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
     String data;
 
     private ArrayList<String> skaitliukai=new ArrayList<>();
+    static ArrayList<String> AllSkaitliukai=new ArrayList<>();
     ProgressDialog pd;
 
     Parser(Context c, String data, ListView lv) {
@@ -91,6 +92,7 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
             JSONObject jo=null;
 
             skaitliukai.clear();
+            AllSkaitliukai.clear();
 
 //            Main4Activity main4Activity = new Main4Activity();
 
@@ -99,12 +101,10 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
             {
                 jo=ja.getJSONObject(i);
 
-                //RETRIOEVE NAME
-                String Date=jo.getString("Date");
-                String Dujos="Dujos: "+jo.getString("Dujos");
-                String Vanduo="Vanduo: "+jo.getString("Vanduo");
-                String Elektra="Elektra: "+jo.getString("Elektra");
-
+                String Date = jo.getString("Date");
+                String Dujos = "Dujos: " + jo.getString("Dujos");
+                String Vanduo = "Vanduo: " + jo.getString("Vanduo");
+                String Elektra = "Elektra: " + jo.getString("Elektra");
 
 
                 switch (Filter.getDataType()) {
@@ -129,6 +129,12 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
                         skaitliukai.add("");
                         break;
                 }
+
+                AllSkaitliukai.add(Date);
+                AllSkaitliukai.add(Dujos);
+                AllSkaitliukai.add(Vanduo);
+                AllSkaitliukai.add(Elektra);
+                AllSkaitliukai.add("");
             }
 
             return 1;

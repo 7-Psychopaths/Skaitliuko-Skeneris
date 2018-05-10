@@ -1,5 +1,6 @@
 package com.a7psychopaths.skaitliukoskeneris;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -127,4 +128,13 @@ public class Main3Activity extends AppCompatActivity {
         Intent intent3 = new Intent(this, MainActivity.class);
         startActivity(intent3);
     }
+
+    @Override
+    public void onBackPressed() {
+        final Context context =  getApplicationContext();
+        final Intent intent = new Intent(context, MainActivity.class);
+        Main3Activity.this.finish();
+        startActivity(intent);
+    }
+
 }
