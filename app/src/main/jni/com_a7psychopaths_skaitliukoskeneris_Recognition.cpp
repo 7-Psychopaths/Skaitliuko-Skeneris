@@ -25,32 +25,27 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     jint retVal;
 
     const char *cstr = env->GetStringUTFChars(path, NULL);
-    string pathToSD = string(cstr);
-    //env->ReleaseStringUTFChars(path, str);
-
-
+    string pathToStorage = string(cstr);
 
     vector<ContourWithData> allContoursWithData;
 	vector<ContourWithData> validContoursWithData;
 
 	Mat matClassificationInts;
 
-    FileStorage fsClassifications(pathToSD+"/classifications.xml", FileStorage::READ);
+    FileStorage fsClassifications(pathToStorage+"/classifications.xml", FileStorage::READ);
     fsClassifications["classifications"] >> matClassificationInts;
 
 	fsClassifications.release();
 
     Mat matTrainingImagesAsFlattenedFloats;
 
-    FileStorage fsTrainingImages(pathToSD+"/images.xml", FileStorage::READ);
+    FileStorage fsTrainingImages(pathToStorage+"/images.xml", FileStorage::READ);
 
     fsTrainingImages["images"] >> matTrainingImagesAsFlattenedFloats;
     fsTrainingImages.release();
 
     KNearest kNearest = KNearest();					// instantiate the KNN object
     kNearest.train(matTrainingImagesAsFlattenedFloats, matClassificationInts);
-
-    //Mat matTestingNumbers = imread("/storage/emulated/0/SkaitliukoSkeneris/dujos.png");
 
     Mat matGrayscale;
     Mat matBlurred;
@@ -101,11 +96,9 @@ JNIEXPORT jint JNICALL Java_com_a7psychopaths_skaitliukoskeneris_Recognition_get
     for (int i = 0; i < ptContours.size(); i++) {               // for each contour
         		ContourWithData contourWithData;                                                    // instantiate a contour with data object
         		contourWithData.ptContour = ptContours[i];                                          // assign contour to contour with data
-        		//if(contourWithData.ptContour.x >300){
         		contourWithData.boundingRect = boundingRect(contourWithData.ptContour);         // get the bounding rect
         		contourWithData.fltArea = contourArea(contourWithData.ptContour);               // calculate the contour area
         		allContoursWithData.push_back(contourWithData);                                     // add contour with data object to list of all contours with data
-                //}
         	}
 
     for (int i = 0; i < allContoursWithData.size(); i++) {                      // for all contours

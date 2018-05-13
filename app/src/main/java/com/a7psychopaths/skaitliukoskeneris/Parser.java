@@ -32,10 +32,6 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
         this.lv = lv;
     }
 
-    public Parser(){
-
-    }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -96,7 +92,7 @@ public class Parser extends AsyncTask<Void,Integer,Integer> {
 
 //            Main4Activity main4Activity = new Main4Activity();
 
-            //LOOP THRU ARRAY
+            //LOOP THROUGH ARRAY
             for(int i=0;i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);

@@ -11,13 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.opencv.android.OpenCVLoader;
 
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainWindow extends AppCompatActivity {
 
     static String url = "http://milvada.lt/procesas/getdujos.php";
     public static boolean back = false;
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static String uniqueID = null;
     private static final String PREF_UNIQUE_ID = "PREF_UNIQUE_ID";
 
-    private static final String TAG="MainActivity";
+    private static final String TAG="MainWindow";
     static{
         if(OpenCVLoader.initDebug()){
             Log.d(TAG, "Succesful connection to OpenCV");
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_window);
 
         final ListView lv= (ListView) findViewById(R.id.lv);
         final Downloader d=new Downloader(this,url,lv);
@@ -66,17 +65,17 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                        Intent intent = new Intent(getApplicationContext(), ChooseMeterWindow.class);
                         startActivity(intent);
-                        MainActivity.this.finish();
+                        MainWindow.this.finish();
                         break;
                     case R.id.action_search:
-                        Intent intent2 = new Intent(getApplicationContext(), Main3Activity.class);
+                        Intent intent2 = new Intent(getApplicationContext(), FilterTypeWindow.class);
                         startActivity(intent2);
-                        MainActivity.this.finish();
+                        MainWindow.this.finish();
                         break;
                     case R.id.action_help:
-                        Intent intent3 = new Intent(getApplicationContext(), Main5Activity.class);
+                        Intent intent3 = new Intent(getApplicationContext(), HelpWindow.class);
                         startActivity(intent3);
                         break;
                 }

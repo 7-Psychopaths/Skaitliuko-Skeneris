@@ -27,22 +27,23 @@ import org.opencv.core.Point;
 
 import java.util.Calendar;
 
-public class Main7Activity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2{
-    private static final String TAG="Main7Activity";
+public class CameraWindow extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2{
+    private static final String TAG="CameraWindow";
     JavaCameraView javaCameraView;
-    String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
+    String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris"; // path to storage
     final BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-    int sl;
-    String digit = "Digit";
+    int sl; // used to count frames
+    String digit = "Digit"; // This will return every scanned number of every frame of the camera
+    // we cant return the digit value to the screen because the user wouldn't be able to follow its speed
+    // so we need a second variable "digitView2" which will return the 40th frame of the "digit" variable
+    String digitView2 = "Number"; // number that will be outputted to screen
     TextView number;
-    static String type ="";
+    static String type =""; // meter type
 
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            //TextView myTextView =
-             //       (TextView)findViewById(R.id.textView5);
-            number.setText(digit);
+            number.setText(digitView2); // output number to screen
         }
     };
 
@@ -70,34 +71,47 @@ public class Main7Activity extends AppCompatActivity implements CameraBridgeView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main7);
+        setContentView(R.layout.camera_window);
 
-        javaCameraView = (JavaCameraView)findViewById(R.id.java_camera_view);
+        javaCameraView = (JavaCameraView)findViewById(R.id.java_camera_view); // creating a camera instance
         javaCameraView.setVisibility(SurfaceView.VISIBLE);
         javaCameraView.setCvCameraViewListener(this);
         number = findViewById(R.id.textView5);
 
         final Context context =  getApplicationContext();
-        final Intent intent = new Intent(context, MainActivity.class);
+        final Intent intent = new Intent(context, MainWindow.class);
 
-        final Button button = findViewById(R.id.button10);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        Log.d(TAG, path);
+
+        final Button saveButton = findViewById(R.id.button10); // Save button
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {  // Once the user presses save, the number will be saved into the database
+                                            // And the user will be reverted back to the main window
+
                 Calendar c = Calendar.getInstance();
                 final int year = c.get(Calendar.YEAR);
                 final int month = c.get(Calendar.MONTH)+1;
                 String date = year + "-" + month;
-                backgroundWorker.execute(type, digit, date, MainActivity.id(getApplicationContext()));
-                startActivity(intent);
-                Main7Activity.this.finish();
+
+                backgroundWorker.execute(type, digitView2, date, MainWindow.id(getApplicationContext())); // save to database
+
+                saveButton.setEnabled(false);
+                saveButton.postDelayed(new Runnable() {
+                    @Override
+                    public void run() { // This method is used to achieve a 2 second delay to avoid application crashes
+                        saveButton.setEnabled(true);
+                        startActivity(intent);
+                        CameraWindow.this.finish();
+                    }
+                }, 2000);
             }
 
         });
-        final Button button2 = findViewById(R.id.button11);
-        button2.setOnClickListener(new View.OnClickListener() {
+        final Button exitButton = findViewById(R.id.button11); // This button lets the user go back to the main window
+        exitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(intent);
-                Main7Activity.this.finish();
+                CameraWindow.this.finish();
             }
 
         });
@@ -132,7 +146,7 @@ public class Main7Activity extends AppCompatActivity implements CameraBridgeView
     }
     @Override
     public void onCameraViewStarted(int width, int height) {
-        mRgba = new Mat(height, width, CvType.CV_8UC4);
+        mRgba = new Mat(height, width, CvType.CV_8UC4); // window frame
     }
 
     @Override
@@ -146,17 +160,21 @@ public class Main7Activity extends AppCompatActivity implements CameraBridgeView
         mRgba = inputFrame.rgba();
         Point pt1 = new Point(290,190);
         Point pt2 = new Point(1010,310);
-        Core.rectangle(mRgba, pt1, pt2, new Scalar(250, 0, 0, 0), 5);
+        Core.rectangle(mRgba, pt1, pt2, new Scalar(250, 0, 0, 0), 5); // we draw a rectangular red box in which the user
+                                                                                            // shows which numbers he wants to be recognized
 
-        Rect roi = new Rect(300, 200, 700, 100);
+        Rect roi = new Rect(300, 200, 700, 100); // we crop out the frame inside the red box
         Mat cropped = new Mat(mRgba, roi);
-        digit = String.valueOf(Recognition.getDigits(cropped.getNativeObjAddr(), path));
-        if(sl == 40) {
+        digit = String.valueOf(Recognition.getDigits(cropped.getNativeObjAddr(), path)); // we pass the cropped out frame to our
+                                                                                        // native c++ code, where our recognition code lies
+                                                                                        // and in return get the recognized digits
+        if(sl == 40) { // we output the 40th frame digit of our camera and pass it to the screen
+            digitView2 = digit;
             handler.sendEmptyMessage(0);
             sl=0;
         }
         sl++;
-        return mRgba;
+        return mRgba; // return the frame with green rectangles drawn over our digits
     }
 
 }
