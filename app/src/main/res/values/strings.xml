@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Skaitliuko Skeneris</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string-array name="filter">
+        <item>Tipa</item>
+        <item>Data</item>
+    </string-array>
 </resources>
