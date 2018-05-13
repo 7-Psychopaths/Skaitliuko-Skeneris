@@ -26,6 +26,15 @@ public class ChooseMeterWindow extends AppCompatActivity {
     }
 
     @Override
+    /*!
+      \fn protected void onCreate(Bundle savedInstanceState)
+      \pram Bundle savedInstanceState
+      \var int year
+      \var int month
+      \var intent intent2
+      \var Calendar c
+      \var Context context
+    */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_meter_window);
@@ -40,14 +49,25 @@ public class ChooseMeterWindow extends AppCompatActivity {
         copyAsset("classifications.xml");
         copyAsset("images.xml");
 
+        /*!
+        \var final Button dujosButton
+        \fn public void OnClickListener(View v)
+        \param View v
+        */
         final Button dujosButton = findViewById(R.id.button);
         dujosButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 Filter.setDataType("");
+                /*!
+                \var String date
+                \var String type
+                */
                 String date = year + "-" + month;
                 String type = "dujos";
-
+                /*!
+                \var AlertDialog diaBox
+                */
                 AlertDialog diaBox = AskOption(type);
 
                 if (!Parser.AllSkaitliukai.isEmpty()) {
@@ -78,14 +98,22 @@ public class ChooseMeterWindow extends AppCompatActivity {
                 }
 
         });
-
+          /*!
+          \var final Button elektraButton
+          */
         final Button elektraButton = findViewById(R.id.button2);
         elektraButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Filter.setDataType("");
+                /*!
+                \var String date
+                \var String type
+                */
                 String date = year+"-"+month;
                 String type = "elektra";
-
+                /*!
+                \var AlertDialog diaBox
+                */
                 AlertDialog diaBox = AskOption(type);
 
                 if(!Parser.AllSkaitliukai.isEmpty()) {
@@ -115,14 +143,22 @@ public class ChooseMeterWindow extends AppCompatActivity {
             }
 
         });
-
+        /*!
+        \var final Button vanduoButton
+        */
         final Button vanduoButton = findViewById(R.id.button3);
         vanduoButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Filter.setDataType("");
+                /*!
+                \var String date
+                \var String type
+                */
                 String date = year+"-"+month;
                 String type = "vanduo";
-
+                /*!
+                \var AlertDialog diaBox
+                */
                 AlertDialog diaBox = AskOption(type);
 
                 if(!Parser.AllSkaitliukai.isEmpty()) {
@@ -156,17 +192,29 @@ public class ChooseMeterWindow extends AppCompatActivity {
 
 
     // copyAsset, copyFile methods are used to save files into phone storage
-
+    /*!
+    \fn private  void copyAsset(String filename)
+    \param String filename
+    \var String dirPath
+    \var File dir
+    */
     private  void copyAsset(String filename){
         String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SkaitliukoSkeneris";
         File dir = new File(dirPath);
         if(!dir.exists()){
             dir.mkdirs();
         }
+        /*!
+        \var InputStream in
+        \var OutputStream out
+        */
         AssetManager assetManager = getAssets();
         InputStream in = null;
         OutputStream out = null;
         try{
+          /*!
+          \var File outFile
+          */
             in = assetManager.open(filename);
             File outFile = new File(dirPath, filename);
             out = new FileOutputStream(outFile);
@@ -190,7 +238,13 @@ public class ChooseMeterWindow extends AppCompatActivity {
             }
         }
     }
-
+    /*!
+    \fn private void copyFile(InputStream in, OutputStream out)
+    \param InputStream in
+    \param OutputStream out
+    \var byte[] buffer
+    \var int read
+    */
     private void copyFile(InputStream in, OutputStream out) throws IOException{
         byte[] buffer = new byte[1024];
         int read;
@@ -199,7 +253,12 @@ public class ChooseMeterWindow extends AppCompatActivity {
         }
     }
     //////////////////////////////////////////////////////////
-
+    /*!
+    \fn private AlertDialog AskOption(final String type2)
+    \param final String type2
+    \var final Context context
+    \var final Intent intent
+    */
     private AlertDialog AskOption(final String type2)
     {
         final Context context =  getApplicationContext();
@@ -211,7 +270,13 @@ public class ChooseMeterWindow extends AppCompatActivity {
                 .setMessage("Toks įrašas jau egzistuoja, norite jį pakeisti?")
 
                 .setPositiveButton("Pakeisti", new DialogInterface.OnClickListener() {
-
+                  /*!
+                  \fn public void onClick(DialogInterface dialog, int whichButton)
+                  \param DialogInterface dialog
+                  \param int whichButton
+                  \var final Context context
+                  \var final Intent intent
+                  */
                     public void onClick(DialogInterface dialog, int whichButton) {
                         startActivity(intent);
                         CameraWindow.type=type2+"2";
@@ -222,6 +287,11 @@ public class ChooseMeterWindow extends AppCompatActivity {
                 })
 
                 .setNegativeButton("Atgal", new DialogInterface.OnClickListener() {
+                  /*!
+                  \fn public void onClick(DialogInterface dialog, int whichButton)
+                  \param DialogInterface dialog
+                  \param int which
+                  */
                     public void onClick(DialogInterface dialog, int which) {
 
                         dialog.dismiss();
@@ -234,6 +304,11 @@ public class ChooseMeterWindow extends AppCompatActivity {
     }
 
     @Override
+    /*!
+    \fn public void onBackPressed()
+    \var final Context context
+    \var final Intent intent
+    */
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
         final Context context =  getApplicationContext();

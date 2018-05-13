@@ -23,6 +23,10 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         context = ctx;
     }
     @Override
+    /*!
+    \fn doInBackground
+    \param String params
+    */
     protected String doInBackground(String... params) {
         String type = params[0];
         String dujos_url = "http://milvada.lt/procesas/adddujos.php";
