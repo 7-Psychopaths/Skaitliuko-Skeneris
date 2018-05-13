@@ -3,9 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Skaitliuko-Skeneris.iml" filepath="$PROJECT_DIR$/Skaitliuko-Skeneris.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8.iml" filepath="$PROJECT_DIR$/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8.iml" />
-      <module fileurl="file://$PROJECT_DIR$/openCVLibrary249/openCVLibrary249.iml" filepath="$PROJECT_DIR$/openCVLibrary249/openCVLibrary249.iml" />
+      <module fileurl="file://D:\softas\Skaitliuko-Skeneris\Skaitliuko-Skeneris.iml" filepath="D:\softas\Skaitliuko-Skeneris\Skaitliuko-Skeneris.iml" />
+      <module fileurl="file://D:\softas\Skaitliuko-Skeneris\app\app.iml" filepath="D:\softas\Skaitliuko-Skeneris\app\app.iml" />
+      <module fileurl="file://D:\softas\Skaitliuko-Skeneris\mysql-connector-java-5.0.8\mysql-connector-java-5.0.8.iml" filepath="D:\softas\Skaitliuko-Skeneris\mysql-connector-java-5.0.8\mysql-connector-java-5.0.8.iml" />
+      <module fileurl="file://D:\softas\Skaitliuko-Skeneris\openCVLibrary249\openCVLibrary249.iml" filepath="D:\softas\Skaitliuko-Skeneris\openCVLibrary249\openCVLibrary249.iml" />
     </modules>
   </component>
 </project>
